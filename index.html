@@ -114,13 +114,14 @@
 
   <script>
     if (window.location.protocol === 'https:') {
-      // Show Enter button that points to the exact same page over HTTP
       const gate = document.getElementById('https-gate');
       const enterBtn = document.getElementById('enter-btn');
-      enterBtn.href = 'http://' + window.location.host + window.location.pathname + window.location.search;
+      
+      // Explicitly bind port 80 to defeat browser auto-upgrades
+      enterBtn.href = 'http://' + window.location.hostname + ':80' + window.location.pathname + window.location.search;
       gate.style.display = 'flex';
     } else {
-      // On HTTP: Immediately bind and display the frame
+      // On HTTP: Load the frame directly
       const frame = document.getElementById('game-frame');
       frame.src = 'http://15.218.217.126:5179';
       frame.style.display = 'block';
