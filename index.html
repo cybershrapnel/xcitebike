@@ -1,23 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Force HTTP redirect to prevent mixed content blocking -->
+  <script>
+    if (window.location.protocol === 'https:') {
+      window.location.replace('http:' + window.location.href.substring(6));
+    }
+  </script>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>40 Player Xcitebike</title>
+  <title>Xcitebike</title>
 
   <!-- Browser Tab Favicon (SVG with 🏍️ Emoji) -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2280%22>🏍️</text></svg>">
 
   <!-- Primary Meta Tags -->
   <meta name="title" content="Xcitebike">
-  <meta name="description" content="Play 40 player Xcitebike online.">
+  <meta name="description" content="Play Xcitebike online.">
 
   <!-- Open Graph / Social Media Preview -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="Xcitebike">
   <meta property="og:description" content="Race to the finish line in Xcitebike!">
-  
-  <!-- Custom Xcitebike Retro SVG for OG Image -->
   <meta property="og:image" content="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='630' viewBox='0 0 1200 630'%3E%3Crect width='100%25' height='100%25' fill='%23111827'/%3E%3Crect y='480' width='100%25' height='150' fill='%23b45309'/%3E%3Ctext x='50%25' y='280' dominant-baseline='middle' text-anchor='middle' font-size='140'%3E%F0%9F%8F%8D%EF%B8%8F%3C/text%3E%3Ctext x='50%25' y='420' dominant-baseline='middle' text-anchor='middle' fill='%23facc15' font-family='Impact, sans-serif' font-style='italic' font-size='85' letter-spacing='4' stroke='%23dc2626' stroke-width='4'%3EXCITEBIKE%3C/text%3E%3C/svg%3E">
 
   <!-- Twitter Meta Tags -->
@@ -53,7 +58,7 @@
     src="http://15.218.217.126:5179" 
     allowfullscreen
     allow="clipboard-read; clipboard-write; gamepad; autoplay"
-    title="40 Player Xcitebike">
+    title="Xcitebike">
   </iframe>
 
 </body>
