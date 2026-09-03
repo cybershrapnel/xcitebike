@@ -1,23 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Force HTTP redirect to prevent mixed content blocking -->
-  <script>
-    if (window.location.protocol === 'https:') {
-      window.location.replace('http:' + window.location.href.substring(6));
-    }
-  </script>
-
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Xcitebike</title>
 
   <!-- Browser Tab Favicon (SVG with 🏍️ Emoji) -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2280%22>🏍️</text></svg>">
-
-  <!-- Primary Meta Tags -->
-  <meta name="title" content="Xcitebike">
-  <meta name="description" content="Play Xcitebike online.">
 
   <!-- Open Graph / Social Media Preview -->
   <meta property="og:type" content="website">
@@ -28,7 +17,7 @@
   <!-- Twitter Meta Tags -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Xcitebike">
-  <meta name="twitter:description" content="Play Xcitebike online.">
+  <meta name="twitter:description" content="Race to the finish line in Xcitebike!">
 
   <style>
     * {
@@ -41,25 +30,102 @@
       width: 100%;
       height: 100%;
       overflow: hidden;
-      background-color: #000;
+      background-color: #0f172a;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     }
 
+    /* Full-screen frame */
     iframe {
       width: 100%;
       height: 100%;
       border: 0;
-      display: block;
+      display: none;
+    }
+
+    /* Retro Entry Screen (Only for HTTPS) */
+    #https-gate {
+      display: none;
+      width: 100%;
+      height: 100%;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .icon {
+      font-size: 5rem;
+      margin-bottom: 12px;
+      user-select: none;
+    }
+
+    .title {
+      font-family: 'Impact', 'Arial Black', sans-serif;
+      font-style: italic;
+      font-size: clamp(2.5rem, 8vw, 4.5rem);
+      letter-spacing: 3px;
+      color: #facc15;
+      text-shadow: 3px 3px #dc2626;
+      margin-bottom: 30px;
+    }
+
+    .enter-btn {
+      display: inline-block;
+      padding: 16px 48px;
+      font-size: 1.25rem;
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: #111827;
+      background: #facc15;
+      border-radius: 50px;
+      box-shadow: 0 4px 20px rgba(250, 204, 21, 0.4);
+      transition: transform 0.15s ease, background 0.15s ease;
+    }
+
+    .enter-btn:hover {
+      background: #fde047;
+      transform: scale(1.05);
+    }
+
+    .enter-btn:active {
+      transform: scale(0.96);
     }
   </style>
 </head>
 <body>
 
+  <!-- Entry Gate (Visible only when visited via HTTPS) -->
+  <div id="https-gate">
+    <div class="icon">🏍️</div>
+    <div class="title">XCITEBIKE</div>
+    <a id="enter-btn" class="enter-btn" href="#">ENTER</a>
+  </div>
+
+  <!-- Game Frame (Loaded only when visited via HTTP) -->
   <iframe 
-    src="http://15.218.217.126:5179" 
+    id="game-frame"
     allowfullscreen
     allow="clipboard-read; clipboard-write; gamepad; autoplay"
     title="Xcitebike">
   </iframe>
+
+  <script>
+    if (window.location.protocol === 'https:') {
+      // Show Enter button that points to the exact same page over HTTP
+      const gate = document.getElementById('https-gate');
+      const enterBtn = document.getElementById('enter-btn');
+      enterBtn.href = 'http://' + window.location.host + window.location.pathname + window.location.search;
+      gate.style.display = 'flex';
+    } else {
+      // On HTTP: Immediately bind and display the frame
+      const frame = document.getElementById('game-frame');
+      frame.src = 'http://15.218.217.126:5179';
+      frame.style.display = 'block';
+    }
+  </script>
 
 </body>
 </html>
